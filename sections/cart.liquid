@@ -36,3 +36,17 @@
   {% endif %}
 
 {% endform %}
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{{ 'cart.js' | asset_url | script_tag }}
+
+{% schema %}
+  {
+    "name": "Cart",
+    "presets": [
+      {
+        "name": "Cart"
+      }
+    ]
+  }
+{% endschema %}
