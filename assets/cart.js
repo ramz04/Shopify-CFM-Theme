@@ -22,7 +22,7 @@ document
 function changeItemQuantity(key, quantity) {
   axios
     .post("/cart/change.js", {
-      Id: key,
+      id: key,
       quantity,
     })
     .then((res) => {
@@ -30,5 +30,13 @@ function changeItemQuantity(key, quantity) {
       const totalPrice = res.data.total_price
       const item = res.data.items.find((item) => item.key === key)
       const itemPrice = item.final_line_price
+
+      document.querySelector("#total-discount").textContent = totalDiscount
+      document.querySelector("#total_price").textContent = totalPrice
+      document.querySelector(
+        `[data-key="${key}"].line_item_price`
+      ).textContent = itemPrice
+
+      console.log(totalDiscount)
     })
 }

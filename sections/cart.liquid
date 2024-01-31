@@ -19,12 +19,12 @@
       </textarea>
     </div>
 
-    <div>
+    <div class="cart-tools">
       <p>Discount:
         <strong>{{ cart.total_discounts | money }}</strong>
       </p>
-      <p>Total :
-        <strong>{{ cart.total_price | money }}</strong>
+      <p>Total:
+        <strong id="total_price">{{ cart.total_price | money }}</strong>
       </p>
     </div>
 
