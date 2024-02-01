@@ -1,52 +1,52 @@
-{% form 'cart'
-  , cart %}
+<div class="cart" data-money-format="{{ shop.money_format }}">
 
-  <h1>Cart</h1>
+  <div class="width">
+    {% form 'cart'
+      , cart %}
 
-
-  {% if cart.empty? %}
-    <p>Hey your cart is empty!</p>
-  {% else %}
-    {% for item in cart.items %}
-      {% render 'cart-item'
-        , item: item %}
-    {% endfor %}
+      <h1>Cart</h1>
 
 
-    <div class="cart-notes">
-      <textarea name="note" placeholder="Add special instructions">
-        {{ cart.note }}
-      </textarea>
-    </div>
+      {% if cart.empty? %}
+        <p>Hey your cart is empty!</p>
+      {% else %}
+        {% for item in cart.items %}
+          {% render 'cart-item'
+            , item: item %}
+        {% endfor %}
 
-    <div class="cart-tools">
-      <p>Discount:
-        <strong>{{ cart.total_discounts | money }}</strong>
-      </p>
-      <p>Total:
-        <strong id="total_price">{{ cart.total_price | money }}</strong>
-      </p>
-    </div>
 
-    <button type="submit" name="update">
-      Update
-    </button>
+        <div class="cart-notes">
+          <textarea name="note" placeholder="Add special instructions">
+            {{ cart.note }}
+          </textarea>
+        </div>
 
-    <button type="submit" name="checkut">Checkout</button>
-  {% endif %}
+        <div class="cart-tools">
+          <p>Discount:
+            <strong>{{ cart.total_discounts | money }}</strong>
+          </p>
+          <p>Total:
+            <strong id="total_price">{{ cart.total_price | money }}</strong>
+          </p>
+        </div>
+        <button type="submit" name="checkut">Checkout</button>
+      {% endif %}
 
-{% endform %}
+    {% endform %}
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-{{ 'cart.js' | asset_url | script_tag }}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    {{ 'cart.js' | asset_url | script_tag }}
 
-{% schema %}
-  {
-    "name": "Cart",
-    "presets": [
+    {% schema %}
       {
-        "name": "Cart"
+        "name": "Cart",
+        "presets": [
+          {
+            "name": "Cart"
+          }
+        ]
       }
-    ]
-  }
-{% endschema %}
+    {% endschema %}
+  </div>
+</div>

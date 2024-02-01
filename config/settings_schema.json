@@ -17,13 +17,22 @@
     ]
   },
   {
-    "name": "Settings",
+    "name": "Page settings",
     "settings": [
       {
         "type": "checkbox",
         "id": "show_search",
         "label": "Show Search form?",
         "default": true
+      },
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Page width",
+        "default": 1200,
+        "min": 800,
+        "max": 1600,
+        "step": 50
       }
     ]
   }
