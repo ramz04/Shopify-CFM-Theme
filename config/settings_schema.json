@@ -1,30 +1,15 @@
 [
   {
-    "name": "Colors",
-    "settings": [
-      {
-        "type": "color",
-        "id": "bg",
-        "label": "background color",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "text_color",
-        "label": "Text color",
-        "default": "#000000"
-      }
-    ]
+    "name": "theme_info",
+    "theme_name": "CameFromMars",
+    "theme_version": "1.0.0",
+    "theme_author": "Abdul-Rahman",
+    "theme_documentation_url": "https://github.com/ramz04/Shopify-CFM-Theme",
+    "theme_support_url": "https://github.com/ramz04/Shopify-CFM-Theme"
   },
   {
     "name": "Page settings",
     "settings": [
-      {
-        "type": "checkbox",
-        "id": "show_search",
-        "label": "Show Search form?",
-        "default": true
-      },
       {
         "type": "range",
         "id": "page_width",
@@ -33,6 +18,35 @@
         "min": 800,
         "max": 1600,
         "step": 50
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "medium_text_color",
+        "label": "Medium text color",
+        "default": "#5e5e5e"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Border color",
+        "default": "#dddddd"
       }
     ]
   }

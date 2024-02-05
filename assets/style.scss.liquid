@@ -1,0 +1,49 @@
+$fadeOff: left 0s 0.4s, opacity 0.4s;
+$fadeOn: left 0s, opacity 0.4s;
+$width: {{ settings.page_width}}px;
+$bp: 960px;
+$bg : {{ settings.background_color}};
+$text: {{ settings.text_color}};
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: $text;
+    background: $bg;
+    font-size: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
+}
+
+img, svg {
+    display:block;
+    width: 100%;
+}
+
+a {
+    text-decoration:none;
+}
+
+li {
+    list-style: none;
+}
+
+.width {
+    max-width: $width;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+
+    @media (min-width: $bp) {
+        width: calc(100% - 80px)
+    }
+}
+
+
+/* Header */
+.header--logo {
+    display: block;
+}

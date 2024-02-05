@@ -1,22 +1,38 @@
-<header>
-  <h1>Coding with {{ shop.name }}</h1>
+<header class="header">
+  {% if section.settings.logo != blank %}
+    <div class="header-logo">
+      {% if section.settings.navigation != blank %}
+        <a href="{{ section.settings.navigation }}">
+      {% endif %}
 
+      <img src="{{ section.settings.logo | img_url: 'master' | image_tag: 'Logo' }}" height="90" width="auto" alt="Logo" />
 
-  <ul>
-    <!-- Main menu -->
-    {% for link in linklists.main-menu.links -%}
+      {% if section.settings.navigation != blank %}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if section.settings.navigation != blank %}
+    <nav class="header__navigation">
+      <!-- Render your navigation menu here -->
+      <ul class="header-nav">
+    {% for link in section.settings.navigation.links %}
       <li>
-        {{ link.title | link_to: link.url }}
+        <a href={{ link.url }}>
+          {{ link.title }}
+        </a>
       </li>
-    {%- endfor %}
+    {% endfor %}
   </ul>
-  {% if setting.show_search %}
-    <form action="/search">
-      <input type="search" name="q" />
-      <button type="submit">Search</button>
-    </form>
+    </nav>
   {% endif %}
 </header>
+<style>
+.header-logo {
+  max-width: {{ section.settings.logo_width }}px
+}
+</style>
 
 {% schema %}
   {
@@ -25,15 +41,26 @@
     "class": "header",
     "settings": [
       {
-        "type": "checkbox",
-        "id": "show_search",
-        "label": "Show Search form?",
-        "default": true
-      }, {
-        "type": "color",
-        "id": "bg",
-        "label": "Background color"
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Logo width",
+        "default": 100,
+        "min": 20,
+        "max": 300,
+        "step": 5
+      },
+      {
+        "type": "link_list",
+        "id": "navigation",
+        "label": "Navigation menu",
+        "default": "main-menu"
       }
     ]
+
   }
 {% endschema %}
