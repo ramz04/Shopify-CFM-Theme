@@ -1,38 +1,60 @@
-<header class="header">
-  {% if section.settings.logo != blank %}
-    <div class="header-logo">
-      {% if section.settings.navigation != blank %}
-        <a href="{{ section.settings.navigation }}">
-      {% endif %}
+<div class="width">
 
-      <img src="{{ section.settings.logo | img_url: 'master' | image_tag: 'Logo' }}" height="90" width="auto" alt="Logo" />
+  <div class="header-flex">
+    <a href="/" class="header-logo">
+      <img src="{{ section.settings.logo | img_url: 'master' }}" height="" width="" alt="{{  site.name }}" >
+    </a>
+  
+    <button class="header-hamburger">
+      <span class="header-hamburger-bar"></span>
+      <span class="header-hamburger-bar"></span>
+      <span class="header-hamburger-bar"></span>
+    </button>
 
-      {% if section.settings.navigation != blank %}
-        </a>
-      {% endif %}
-    </div>
-  {% endif %}
+    <ul class="header-nav">
+      {% for link in section.settings.navigation.links %}
+        <li>
+          <a href={{ link.url }}>
+            {{ link.title }}
+          </a>
 
-  {% if section.settings.navigation != blank %}
-    <nav class="header__navigation">
-      <!-- Render your navigation menu here -->
-      <ul class="header-nav">
-    {% for link in section.settings.navigation.links %}
-      <li>
-        <a href={{ link.url }}>
-          {{ link.title }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
-    </nav>
-  {% endif %}
-</header>
+          {% if link.links != blank %}
+            <ul class="header-sub">
+              {% for child in link.links %}
+                <li class="header-sub-item">
+                  <a href="{{ child.url }}" class="header-sub-anchor">
+                    {{ child.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
 <style>
-.header-logo {
-  max-width: {{ section.settings.logo_width }}px
-}
+  .header {
+    padding: {{ section.settings.padding }}px 0;
+  }
+  .header-logo {
+    max-width: {{ section.settings.logo_width }}px;
+  }
 </style>
+
+<script>
+  document.querySelector('.header-hamburger').addEventListener('click', () => {
+    document.querySelector('.header').classList.toggle('nav-active');
+  });
+
+  document.querySelector('.header-nav-overlay').addEventListener('click', () => {
+    document.querySelector('.header').classList.remove('nav-active');
+  });
+</script>
+
 
 {% schema %}
   {
@@ -40,6 +62,15 @@
     "tag": "header",
     "class": "header",
     "settings": [
+      {
+      "type": "range",
+      "id": "padding",
+      "label": "Header height",
+      "default": 24,
+      "min": 5,
+      "max": 100,
+      "step": 1
+      },
       {
         "type": "image_picker",
         "id": "logo",
